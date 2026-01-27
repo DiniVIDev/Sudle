@@ -1,0 +1,73 @@
+.gridContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  position: relative;
+}
+
+
+.rowdiv {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin: 5px 0;
+}
+
+.v_line {
+  width: 4px;
+  height: 60px;
+  background-color: var(--line-color);
+  margin: 0 10px;
+  background-color: black;
+}
+.h_line {
+  width: 60px;
+  height: 4px;
+  background-color: var(--line-color);
+  margin: 10px 10px;
+  background-color: black;  }
+
+
+.cell {
+  width: 60px;
+  height: 60px;
+  margin: 0 5px;
+  font-size: 24px;
+  border: 2px solid black;
+  background-color: var(--cell-background-color);
+  color: var(--button-text-color);
+  cursor: pointer;
+}
+
+/* Result colors */
+.cell.green {
+  background-color: #6AAA64; /* green */
+  color: white;
+}
+
+.cell.yellow {
+  background-color: #C9B458; /* yellow */
+  color: white;
+}
+
+.cell.grey {
+  background-color: #787C7E; /* grey */
+  color: white;
+}
+
+/* Selected border override */
+.cell.selected {
+  border: 3px solid blue; /* highlight selected cell */
+}
+
+
+.appContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: var(--background-color);
+}

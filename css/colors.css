@@ -1,0 +1,11 @@
+/* =========================================================
+   COLOR PALETTE - Material Design Theme
+   ========================================================= */
+
+:root {
+  --button-selected-color: #FAF0E6; /* Blue 700 */
+  --button-selected-text-color: #5e0000; /* White */
+  --cell-background-color: #fff; /* White */
+  --button-text-color: #000000; /* Blue 900 */
+  --background-color: #3ecbaa; /* Grey 300 */
+}
