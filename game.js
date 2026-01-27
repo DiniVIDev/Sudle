@@ -92,27 +92,23 @@ const solution = [2, 4, 1, 3,
       
           if (!selectedCell && (key === "ArrowRight" || key === "ArrowDown" || key === "ArrowLeft" || key === "ArrowUp" || key === "ArrowUp")) 
         {
-          setSelectedCell(1);
+          selectCell(1);
           } 
       if (selectedCell && key === "ArrowRight") {
-        setSelectedCell(prev => {
-          return prev % 16 + 1;
-        })
+        selectCell((selectedCell % 16) + 1);
       }
       if (selectedCell && key === "ArrowLeft") {
-        setSelectedCell(prev => {
-          return (prev - 2) % 16 + 1;
-        })
+        selectCell(((selectedCell - 2 + 16) % 16) + 1);
       }
       if (selectedCell && key === "ArrowDown") {
-        setSelectedCell(prev => {
-          return ((prev - 1 + 4) % 16) + 1;
+        selectCell(prev => {
+          return ((prev + 3) % 16) + 1;
         })
       }
       if (selectedCell && key === "ArrowUp") {
-        setSelectedCell(prev => {
-          return ((prev - 1 - 4 + 16) % 16) + 1;
-        })
+        selectCell(prev => {
+          return ((prev - 5 + 16) % 16) + 1;
+        });
       }
     
     }
