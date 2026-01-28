@@ -1,11 +1,11 @@
-function Game() {
+function Four() {
   // 1️⃣ State
   const [cells, setCells] = React.useState(Array(16).fill(""));
   const [cellResults, setCellResults] = React.useState(Array(16).fill(null));
   const [selectedCell, setSelectedCell] = React.useState(null);
   const [selectedCellNum, setSelectedCellNum] = React.useState(null);
-
-
+  const  [guessCount, setGuessCount] = React.useState(0);
+  const  [gameWon, setGameWon] = React.useState(false);
 
 
 function selectCell(index) {
@@ -73,6 +73,11 @@ const solution = [2, 4, 1, 3,
           const newResults = [...prevResults];
           const result = checkResult(selectedCell - 1, selectedCellNum);
           newResults[selectedCell - 1] = result;
+          if (newResults.every(res => res === "green")) {
+            setGameWon(true);
+          }
+          setGuessCount(prevCount => prevCount + 1);
+
           return newResults;
         })
           
@@ -101,14 +106,11 @@ const solution = [2, 4, 1, 3,
         selectCell(((selectedCell - 2 + 16) % 16) + 1);
       }
       if (selectedCell && key === "ArrowDown") {
-        selectCell(prev => {
-          return ((prev + 3) % 16) + 1;
-        })
+        selectCell((selectedCell + 3) % 16+1);
       }
+        
       if (selectedCell && key === "ArrowUp") {
-        selectCell(prev => {
-          return ((prev - 5 + 16) % 16) + 1;
-        });
+        selectCell((selectedCell -5) % 16+1);
       }
     
     }
@@ -140,10 +142,11 @@ const solution = [2, 4, 1, 3,
   const selectedClass = selectedCell === i ? "selected" : "";
     cellButtons.push(
       <button
-        key={i}
-        className={`cell ${selectedClass} ${resultClass}`}
-        id={i}
-        onClick={() => selectCell(i)}
+  className={`cell ${selectedClass} ${resultClass}`}
+  onClick={(e) => {
+    e.stopPropagation();
+    selectCell(i);
+  }}
       >
         {(selectedCell === i && selectedCellNum !== null)? selectedCellNum : cells[i - 1]}
       </button>
@@ -154,6 +157,9 @@ const solution = [2, 4, 1, 3,
   return (
     <div>
       <h2>Sudle</h2>
+      {gameWon && <h3>Congratulations! You solved the puzzle in {guessCount} guesses!</h3>}
+      {!gameWon && <div>
+      <p>Guesses: {guessCount}</p>
       <div className="gridContainer">
 
         <div className="rowdiv">
@@ -188,6 +194,7 @@ const solution = [2, 4, 1, 3,
         </div>
 
       </div>
+      </div>}
     </div>
   );
 }
